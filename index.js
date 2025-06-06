@@ -58,4 +58,27 @@ formulaire.addEventListener("submit", (e) => {
 
   // Appel de l'url de l'api meteo
   const url = 'https://api.meteo-concept.com/api/forecast/daily/0?token=${CLE_API}&insee=${codeCommune}';
-})
+
+  // Appel de l'api de meteo 
+  fetch(url)
+    // On lis le json 
+    .then(res => res.json())
+    .then(data => {
+      // récupération des données dans le forecast
+      const donneesMeteo = data.forecast;
+      
+      // On rajoute les informations dans la page 
+      resultat.innerHTML = `
+      <h2>Météo pour aujourd'hui </h2>
+      <p>🌡️ Min : ${donneesMeteo.tmin} °C</p>
+      <p>🌡️ Max : ${donneesMeteo.tmax} °C</p>
+      <p>🌧️ Pluie : ${donneesMeteo.probarain} %</p>
+      <p>☀️ Soleil : ${donneesMeteo.sun_hours} h</p>
+      `;
+    })
+    .catch(err => {
+      // gestion erreur externe 
+      resultat.textContent = "Erreur sur la récupération de la météo";
+      console.error(err);
+    });
+});
