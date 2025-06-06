@@ -1,0 +1,65 @@
+/*Police*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&family=Poppins:wght@100..900&family=Yeseva+One&display=swap');
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 2rem;
+    color: #333;
+  }
+  
+
+/* Header */
+header {
+    color: #f8f9fa;
+    background-color: #6c757d;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2%;
+}
+
+main {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  input, select, button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #0077cc;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #005fa3;
+  }
+  
+  #weather-result {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #eef;
+    border-radius: 8px;
+  }
+  
