@@ -28,16 +28,14 @@ Par exemple : de la pluie et du soleil
 
 ## Outils utilisés :
 
--HTML : structure du site
+- HTML : structure du site
 
--CSS : style du site
+- CSS : style du site
 
--Javascript : intéragir avec le site
+- Javascript : intéragir avec le site
 
--l'API de découpage administratif par commune pour la recherche de la commune : https://geo.api.gouv.fr/decoupage-administratif/communes
+- l'API de découpage administratif par commune pour la recherche de la commune : https://geo.api.gouv.fr/decoupage-administratif/communes
 
--l'API météo de MétéoConcept pour avoir les informations météos : https://api.meteo-concept.com/
+- l'API météo de MétéoConcept pour avoir les informations météos : https://api.meteo-concept.com/
 
--W3C : pour valider le site et accéder aux bibliothèques d'animation css
-
--WCAG AA 2.0 : pour valider les normes d'accessibilité 
+- W3C et -WCAG AA 2.0 : pour valider les normes d'accessibilité  
