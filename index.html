@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,7 @@
 
 <body>
     <header>
+        <button id="toggle-theme">🌓 Mode Sombre</button>
         <h1 id="emoji-title"></h1>
         <p>À partir d'un code postal, retrouvez les prévisions météo du jour d'une commune.</p>
     </header>
@@ -22,7 +23,20 @@
           
           <label for="selectionVille">Commune :</label>
           <select id="selectionVille" name="selectionVille"></select>
+
+          <label for="nbJours">Nombre de jours :</label>
+          <input type="range" name="nbJours" id="nbJours" min="1" max="7" value="1"/>
+          <span id="valeurNbJours">1</span>jours 
           
+          <fieldset>
+            <legend>Informations :</legend>
+            <li><input type="checkbox" id="latitude" name="infos" value="latitude"> Latitude</li>
+            <li><input type="checkbox" id="longitude" name="infos" value="longitude"> Longitude</li>
+            <li><input type="checkbox" id="pluie" name="infos" value="pluie"> Pluie (mm)</li>
+            <li><input type="checkbox" id="vent" name="infos" value="vent"> Moyenne des vents (km/h)</li>
+            <li><input type="checkbox" id="directionVent" name="infos" value="directionVent">Direction du vent (°)</li>
+          </fieldset>
+
           <button type="submit">Obtenir la météo</button>
         </form>
     

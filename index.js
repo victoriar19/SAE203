@@ -167,3 +167,19 @@ formulaire.addEventListener("submit", (e) => {
       console.error(err);
     });
 });
+
+// Ajout thème sombre 
+
+const boutonTheme = document.getElementById("toggle-theme");
+
+// Applique le thème sombre 
+if (localStorage.getItem("theme") === "sombre") {
+  document.body.classList.add("themeSombre");
+}
+
+// On écoute l'evenement du bouton
+boutonTheme.addEventListener("click", () => {
+  document.body.classList.toggle("themeSombre");
+  const themeActuel = document.body.classList.contains("themeSombre") ? "sombre" : "clair";
+  localStorage.setItem("theme", themeActuel);
+});
