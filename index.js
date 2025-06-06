@@ -39,6 +39,8 @@ codePostal.addEventListener("input", () => {
         selectionVille.appendChild(optionCommune); 
       });
     })
-    
-
-})
+    .catch(err => {
+      // Gestion d'autres erreurs
+      console.error("Erreur externe :", err)
+    });
+});
