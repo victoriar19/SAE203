@@ -12,6 +12,24 @@ const codePostal = document.getElementById("codePostal"); // On entre le code po
 const selectionVille = document.getElementById("selectionVille"); // On selectionne la ville correspondante
 const resultat = document.getElementById("resultat"); // Zone d'affichage des résultats
 
+// Ajout de constantes pour la carte : 
+  function getWeatherIcon(weatherCode) {
+    const icons = {
+      0: "☀️",    // Soleil
+      1: "🌤️",   // Peu nuageux
+      2: "⛅",    // Ciel voilé
+      3: "☁️",    // Couvert
+      4: "🌧️",   // Averses
+      5: "🌦️",   // Orages
+      6: "🌨️",   // Neige
+      7: "🌫️",   // Brouillard
+      
+    };
+
+    return icons[weatherCode] || "❓";
+  }
+
+
 // Gestion affichage dynamique des jours :
 
 const nbJoursInput = document.getElementById("nbJours");
@@ -96,21 +114,31 @@ formulaire.addEventListener("submit", (e) => {
       let html = `<h2>Prévisions sur ${nbJours} jour(s)</h2>`;
       
       donneesMeteo.forEach((jour, index) => {
+        const dateJour = new Date(jour.datetime);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateFormatee = dateJour.toLocaleDateString('fr-FR', options);
+
+        const icone = getWeatherIcon(jour.weather);
+
       // On rajoute les informations dans la page 
         html += `
-          <div> 
-            <h3> Jour ${index +1}</h3>
-            <p>🌡️ Min : ${jour.tmin} °C</p>
-            <p>🌡️ Max : ${jour.tmax} °C</p>
-            <p>🌧️ Pluie : ${jour.probarain} %</p>
-            <p>☀️ Soleil : ${jour.sun_hours} h</p>
+          <div class="carte-meteo">
+            <h3>${selectionVille.options[selectionVille.selectedIndex].text} - ${dateFormatee}</h3>
+            <div class="contenu-carte">
+              <div class="icone">${icone}</div>
+              <div class="infos">
+                <h4>${jour.weather_text || "Météo inconnue"}</h4>
+                <p>🌡️ T min : ${jour.tmin} °C</p>
+                <p>🌡️ T max : ${jour.tmax} °C</p>
+                <p>☀️Ensoleillement : ${jour.sun_hours} heures</p>
+                <p>🌧️ Probabilité de pluie : ${jour.probarain} %</p>
+                ${pluieChecked ? `<p>Cumul pluie : ${jour.rr10} mm</p>` : ""}
+                ${ventChecked ? `<p>Vent moyen (10m) : ${jour.wind10m} km/h</p>` : ""}
+                ${directionVentChecked ? `<p>Direction du vent : ${jour.dirwind10m}°</p>` : ""}
+              </div>
+            </div>
+          </div>
         `;
-
-        // Ajout des infos ( pluie ,vent ,direction)
-        if (pluieChecked) html += `<p>🌧️ Cumul pluie : ${jour.rr10} mm</p>`;
-        if (ventChecked) html += `<p>💨 Vent moyen : ${jour.wind10m} km/h</p>`;
-        if (directionVentChecked) html += `<p>🧭 Direction vent : ${jour.dirwind10m}°</p>`;
-        html += `</div>`;
       });
       
       // Ajout des affichages de longitude et latitude 
