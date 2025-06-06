@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="emoji-title"></h1>
+        <script>
+            const emojis = ["☀️", "🌤️", "⛅", "🌥️", "☁️", "🌦️", "🌧️", "⛈️", "🌩️", "🌨️", "❄️", "🌪️", "🌫️", "💨", "🌈"];
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            document.getElementById("emoji-title").textContent = `${randomEmoji} Instant Weather`;
+        </script>
+        <p>À partir d'un code postal, retrouvez les prévisions météo du jour d'une commune.</p>
+    </header>
+
+    <main>
+        <form id="formulaireMeteo" aria-label="Formulaire météo">
+          <label for="codePostal">Code postal :</label>
+          <input type="text" id="codePostal" name="codePostal"/>
+          
+          <label for="selectionVille">Commune :</label>
+          <select id="selectionVille" name="selectionVille"></select>
+          
+          <button type="submit">Obtenir la météo</button>
+        </form>
+    
+        <section id="resultat" aria-live="polite"></section>
+      </main>
+        
+
+</html> <body>
