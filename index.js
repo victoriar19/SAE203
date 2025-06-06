@@ -73,6 +73,15 @@ formulaire.addEventListener("submit", (e) => {
     resultat.textContent = "Sélectionner une ville avant d'obtenir sa météo";
     return;
   }
+
+  // Ajout des constantes d'infos 
+  const nbJours = parseInt(nbJoursInput.value, 10);
+  const latitudeChecked = document.getElementById("latitude").checked;
+  const longitudeChecked = document.getElementById("longitude").checked;
+  const pluieChecked = document.getElementById("pluie").checked;
+  const ventChecked = document.getElementById("vent").checked;
+  const directionVentChecked = document.getElementById("directionVent").checked;
+
   // Appel de l'url de l'api meteo
   const url = `https://api.meteo-concept.com/api/forecast/daily/0?token=${CLE_API}&insee=${codeCommune}`;
 
