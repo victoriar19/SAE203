@@ -15,5 +15,18 @@ codePostal.addEventListener("input", () => {
   // Première gestion des errreurs : il n'y a pas 5 chiffres 
   if(codeP.lenght !== 5) return;
 
-  
+  // Appel de L'API des communes 
+  fetch(`https://geo.api.gouv.fr/communes?codePostal=${codeP}&fields=nom,code`)
+    // Transformation en json
+    .then(res => res.json())
+    .then(communes => {
+      // Gestion deuxième erreur : aucune ville trouvée 
+      if(communes.lenght === 0){
+        const option = document.createElement("option");
+        option.textContent = "Aucune commune associée";
+        selectionVille.appendChild(option);
+        return;
+      }
+    })
+
 })
