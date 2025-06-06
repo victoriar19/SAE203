@@ -31,7 +31,8 @@ codePostal.addEventListener("input", () => {
   if(codeP.length !== 5) return;
 
   // Appel de L'API des communes 
-  fetch(`https://geo.api.gouv.fr/communes?codePostal=${codeP}&fields=nom,code`)
+  const apiCommune = `https://geo.api.gouv.fr/communes?codePostal=${codeP}&fields=nom,code`;
+  fetch(apiCommune)
     // Transformation en json
     .then(res => res.json())
     .then(communes => {
@@ -83,24 +84,54 @@ formulaire.addEventListener("submit", (e) => {
   const directionVentChecked = document.getElementById("directionVent").checked;
 
   // Appel de l'url de l'api meteo
-  const url = `https://api.meteo-concept.com/api/forecast/daily/0?token=${CLE_API}&insee=${codeCommune}`;
+  const urlMeteo = `https://api.meteo-concept.com/api/forecast/daily?token=${CLE_API}&insee=${codeCommune}`;
 
   // Appel de l'api de meteo 
-  fetch(url)
+  fetch(urlMeteo)
     // On lis le json 
     .then(res => res.json())
     .then(data => {
       // récupération des données dans le forecast
-      const donneesMeteo = data.forecast;
+      const donneesMeteo = data.forecast.slice(0, nbJours);
+      let html = `<h2>Prévisions sur ${nbJours} jour(s)</h2>`;
       
+      donneesMeteo.forEach((jour, index) => {
       // On rajoute les informations dans la page 
-      resultat.innerHTML = `
-      <h2>Météo pour aujourd'hui </h2>
-      <p>🌡️ Min : ${donneesMeteo.tmin} °C</p>
-      <p>🌡️ Max : ${donneesMeteo.tmax} °C</p>
-      <p>🌧️ Pluie : ${donneesMeteo.probarain} %</p>
-      <p>☀️ Soleil : ${donneesMeteo.sun_hours} h</p>
-      `;
+        html += `
+          <div> 
+            <h3> Jour ${index +1}</h3>
+            <p>🌡️ Min : ${jour.tmin} °C</p>
+            <p>🌡️ Max : ${jour.tmax} °C</p>
+            <p>🌧️ Pluie : ${jour.probarain} %</p>
+            <p>☀️ Soleil : ${jour.sun_hours} h</p>
+        `;
+
+        // Ajout des infos ( pluie ,vent ,direction)
+        if (pluieChecked) html += `<p>🌧️ Cumul pluie : ${jour.rr10} mm</p>`;
+        if (ventChecked) html += `<p>💨 Vent moyen : ${jour.wind10m} km/h</p>`;
+        if (directionVentChecked) html += `<p>🧭 Direction vent : ${jour.dirwind10m}°</p>`;
+        html += `</div>`;
+      });
+      
+      // Ajout des affichages de longitude et latitude 
+      if (latitudeChecked || longitudeChecked) {
+        const latitudeLongitude = `https://geo.api.gouv.fr/communes/${codeCommune}?fields=centre`;
+        fetch(latitudeLongitude)
+          .then(res => res.json())
+          .then(commune => {
+            if (latitudeChecked) html += `<p>📍 Latitude : ${commune.centre.coordinates[1]}</p>`;
+            if (longitudeChecked) html += `<p>📍 Longitude : ${commune.centre.coordinates[0]}</p>`;
+            resultat.innerHTML = html;
+          })
+          // Gestion erreure coordonnées 
+          .catch(err => {
+            resultat.innerHTML = html + "<p>(Erreur pour récupérer les coordonnées)</p>";
+            console.error("Erreur coordonnées :", err);
+          });
+      } else {
+        resultat.innerHTML = html;
+      }
+      
     })
     .catch(err => {
       // gestion erreur externe 
