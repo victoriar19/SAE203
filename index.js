@@ -7,6 +7,8 @@ const codePostal = document.getElementById("codePostal"); // On entre le code po
 const selectionVille = document.getElementById("selectionVille"); // On selectionne la ville correspondante
 const resultat = document.getElementById("resultat"); // Zone d'affichage des résultats
 
+
+// Gestion des entrées
 codePostal.addEventListener("input", () => {
   // Suppression des espaces
   const codeP = codePostal.value.trim();
@@ -16,7 +18,7 @@ codePostal.addEventListener("input", () => {
   if(codeP.lenght !== 5) return;
 
   // Appel de L'API des communes 
-  fetch(`https://geo.api.gouv.fr/communes?codePostal=${codeP}&fields=nom,code`)
+  fetch(`https://geo.api.gouv.fr/communes?codePostal=${codeP}&fields=nom,codeP`)
     // Transformation en json
     .then(res => res.json())
     .then(communes => {
@@ -44,3 +46,16 @@ codePostal.addEventListener("input", () => {
       console.error("Erreur externe :", err)
     });
 });
+
+// Gestion de l'envoi du formulaire
+
+formulaire.addEventListener("submit", (e) => {
+  // On empêche une erreur en rechargeant la page
+  e.preventDefault();
+
+  // On récupère le code INSEE
+  const codeCommune = selectionVille.value;
+
+  // Appel de l'url de l'api meteo
+  const url = 'https://api.meteo-concept.com/api/forecast/daily/0?token=${CLE_API}&insee=${codeCommune}';
+})
