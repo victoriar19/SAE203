@@ -30,11 +30,31 @@
           
           <fieldset>
             <legend>Informations :</legend>
-            <label><input type="checkbox" id="latitude" name="infos" value="latitude"> Latitude</label>
-            <label><input type="checkbox" id="longitude" name="infos" value="longitude"> Longitude</label>
-            <label><input type="checkbox" id="pluie" name="infos" value="pluie"> Pluie (mm)</label>
-            <label><input type="checkbox" id="vent" name="infos" value="vent"> Moyenne des vents (km/h)</label>
-            <label><input type="checkbox" id="directionVent" name="infos" value="directionVent">Direction du vent (°)</label>
+
+              <div>
+                <input type="checkbox" id="latitude" name="infos" value="latitude">
+                <label for="latitude">Latitude</label>
+              </div>
+            
+              <div>
+                <input type="checkbox" id="longitude" name="infos" value="longitude">
+                <label for="longitude">Longitude</label>
+              </div>
+            
+              <div>
+                <input type="checkbox" id="pluie" name="infos" value="pluie">
+                <label for="pluie">Pluie (mm)</label>
+              </div>
+            
+              <div>
+                <input type="checkbox" id="vent" name="infos" value="vent">
+                <label for="vent">Moyenne des vents (km/h)</label>
+              </div>
+            
+              <div>
+                <input type="checkbox" id="directionVent" name="infos" value="directionVent">
+                <label for="directionVent">Direction du vent (°)</label>
+              </div>
           </fieldset>
 
           <button type="submit">Obtenir la météo</button>
