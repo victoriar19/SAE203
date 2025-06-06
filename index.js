@@ -12,6 +12,14 @@ const codePostal = document.getElementById("codePostal"); // On entre le code po
 const selectionVille = document.getElementById("selectionVille"); // On selectionne la ville correspondante
 const resultat = document.getElementById("resultat"); // Zone d'affichage des résultats
 
+// Gestion affichage dynamique des jours :
+
+const nbJoursInput = document.getElementById("nbJours");
+const valeurNbJours = document.getElementById("valeurNbJours");
+
+nbJoursInput.addEventListener("input", () => {
+  valeurNbJours.textContent = nbJoursInput.value;
+})
 
 // Gestion des entrées
 codePostal.addEventListener("input", () => {
