@@ -127,7 +127,6 @@ formulaire.addEventListener("submit", (e) => {
             <div class="contenu-carte">
               <div class="icone">${icone}</div>
               <div class="infos">
-                <h4>${jour.weather_text || "Météo inconnue"}</h4>
                 <p>🌡️ T min : ${jour.tmin} °C</p>
                 <p>🌡️ T max : ${jour.tmax} °C</p>
                 <p>☀️Ensoleillement : ${jour.sun_hours} heures</p>
@@ -140,6 +139,7 @@ formulaire.addEventListener("submit", (e) => {
           </div>
         `;
       });
+
       
       // Ajout des affichages de longitude et latitude 
       if (latitudeChecked || longitudeChecked) {

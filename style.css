@@ -63,3 +63,35 @@ main {
     border-radius: 8px;
   }
   
+  /* Carte météo */
+.carte-meteo {
+  margin-top: 1.5rem;
+  border: 2px solid #0077cc;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #e6f0ff;
+}
+
+.carte-meteo h3 {
+  margin-top: 0;
+  background-color: #003366;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 6px 6px 0 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.contenu-carte {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icone {
+  font-size: 3rem;
+}
+
+.infos p {
+  margin: 0.2rem 0;
+}
