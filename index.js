@@ -1,3 +1,8 @@
+// Ajoute un emoji météo aléatoire dans le titre
+const emojis = ["☀️", "🌤️", "⛅", "🌥️", "☁️", "🌦️", "🌧️", "⛈️", "🌩️", "🌨️", "❄️", "🌪️", "🌫️", "💨", "🌈"];
+const Emoji = emojis[Math.floor(Math.random() * emojis.length)];
+document.getElementById("emoji-title").textContent = `${Emoji} Instant Weather`;
+
 // Ajout de la clé d'API
 const CLE_API = "13c66db1c00607a0230ab3dc1503655095051b1e8d8d51052aedad1c9fe5ff55";
 
