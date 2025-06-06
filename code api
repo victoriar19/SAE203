@@ -1,0 +1,23 @@
+Votre token est le suivant :
+
+13c66db1c00607a0230ab3dc1503655095051b1e8d8d51052aedad1c9fe5ff55
+
+Celui-ci est à renseigner lors de chacune de vos appels à l'API, par exemple :
+
+http://api.meteo-concept.com/api/ephemeride/0?token=13c66db1c00607a0230ab3dc1503655095051b1e8d8d51052aedad1c9fe5ff55
+
+
+Api code postal : 'https://geo.api.gouv.fr/communes?codePostal='
+
+
+
+repo du prof : https://github.com/princecorg/Instant-Weather
+Si jamais ça peut servir
+
+
+
+
+const METEO_API_KEY = "13c66db1c00607a0230ab3dc1503655095051b1e8d8d51052aedad1c9fe5ff55";
+fetch(`https://api.meteo-concept.com/api/forecast/daily/0?token=${METEO_API_KEY}`)
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
