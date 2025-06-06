@@ -27,6 +27,18 @@ codePostal.addEventListener("input", () => {
         selectionVille.appendChild(option);
         return;
       }
+
+      // Ajout des communes dans les options affichées
+      communes.forEach(commune => {
+        const optionCommune = document.createElement("option");
+        // Récuperation du code INSEE 
+        optionCommune.value = commune.codeP;
+        // Récupération du nom
+        optionCommune.textContent = commune.nom;
+        // Ajout de la commune dans les choix
+        selectionVille.appendChild(optionCommune); 
+      });
     })
+    
 
 })
